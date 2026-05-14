@@ -48,7 +48,7 @@ El programa incluye mensajes de error y rechaza la acción si:
 
 ---
 
-## 5. Diagrama de clases
+## 4. Diagrama de clases
  [Diagrama de clases](./diagramadeClases.png)
 ---
 
