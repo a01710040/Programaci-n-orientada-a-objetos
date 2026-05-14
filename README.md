@@ -4,15 +4,7 @@ Este proyecto implementa un sistema básico de gestión de inventario y clientes
 
 ***
 
-## 1. Estructura de clases
-
-* **Herencia:** Las clases **`Planta`** y **`Maceta`** heredan las propiedades básicas (`NombreProducto`, `PrecioProducto`) de la clase base **`Producto`**.
-* **Composición / Agregación:** La clase **`Vivero`** actúa como la clase gestora central, **conteniendo** los arreglos fijos de **`Planta`** (Composición) y **`Cliente`** (Agregación) para realizar todas las operaciones de negocio.
-* **Encapsulamiento:** Se utilizan atributos privados (`private`) o protegidos (`protected`) y métodos públicos (`Getters`/`Setters`) para controlar el acceso y la modificación de datos.
-
----
-
-## 2. Archivos del proyecto
+## 1. Archivos del proyecto
 
 | Archivo | Contenido Principal |
 | :--- | :--- |
@@ -23,7 +15,7 @@ Este proyecto implementa un sistema básico de gestión de inventario y clientes
 
 ---
 
-## 3. Funcionalidad y Alcance del Sistema
+## 2. Funcionalidad y Alcance del Sistema
 
 ### ¿Para qué sirve?
 
@@ -48,7 +40,12 @@ El programa incluye mensajes de error y rechaza la acción si:
 
 ---
 
-## 4. Diagrama de clases
+## 3. Diagrama de clases
+
+* **Herencia:** Las clases **`Planta`** y **`Maceta`** heredan las propiedades básicas (`NombreProducto`, `PrecioProducto`) de la clase base **`Producto`**.
+* **Composición / Agregación:** La clase **`Vivero`** actúa como la clase gestora central, **conteniendo** los arreglos fijos de **`Planta`** (Composición) y **`Cliente`** (Agregación) para realizar todas las operaciones de negocio.
+* **Encapsulamiento:** Se utilizan atributos privados (`private`) o protegidos (`protected`) y métodos públicos (`Getters`/`Setters`) para controlar el acceso y la modificación de datos.
+
  [Diagrama de clases](./diagramadeClases.png)
 ---
 
