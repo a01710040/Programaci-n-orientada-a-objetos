@@ -1,47 +1,86 @@
-#ifndef CLIENTE_H
-#define CLIENTE_H
+#ifndef CLIENTE_H_
+#define CLIENTE_H_
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
+/*
+ * Clase Cliente: Representa a los clientes del vivero.
+ */
 class Cliente {
 private:
-    string nombre;
-    double presupuesto;
+    string nombreCliente;
+    double presupuestoCliente;
 
 public:
-    Cliente() {
-        nombre = "Sin Nombre";
-        presupuesto = 0.0;
-    }
-
-    Cliente(string p_nombre, double p_presupuesto);
-    string getNombre();
-    bool comprar(double costo);
+    // --- Declaraciones ---
+    Cliente();
+    Cliente(string nombreIn, double presupuestoIn);
+    
+    string getNombre() const;
+    
+    bool comprar(double costoCompra);
     void mostrar();
 };
 
-Cliente::Cliente(string p_nombre, double p_presupuesto) {
-    nombre = p_nombre;
-    presupuesto = p_presupuesto;
+/**
+ * Constructor por defecto. Inicializa Cliente con valores base.
+ *
+ * @param Ninguno
+ * @return Objeto Cliente
+ */
+Cliente::Cliente() {
+    nombreCliente = "Sin Nombre";
+    presupuestoCliente = 0.0;
 }
 
-string Cliente::getNombre() {
-    return nombre;
+/**
+ * Constructor con parámetros.
+ *
+ * @param string nombreIn: Nombre del cliente.
+ * @param double presupuestoIn: Dinero inicial del cliente.
+ * @return Objeto Cliente
+ */
+Cliente::Cliente(string nombreIn, double presupuestoIn) {
+    nombreCliente = nombreIn;
+    presupuestoCliente = presupuestoIn;
 }
 
-bool Cliente::comprar(double costo) {
-    if (presupuesto >= costo) {
-        presupuesto = presupuesto - costo;
+/**
+ * Método getter para obtener el nombre del cliente.
+ *
+ * @param Ninguno
+ * @return string: Nombre del cliente.
+ */
+string Cliente::getNombre() const {
+    return nombreCliente;
+}
+
+/**
+ * Simula la compra. Verifica si hay presupuesto suficiente.
+ *
+ * @param double costoCompra: Precio total de la compra.
+ * @return bool: true si la compra fue exitosa, false si no.
+ */
+bool Cliente::comprar(double costoCompra) {
+    if (presupuestoCliente >= costoCompra) {
+        presupuestoCliente = presupuestoCliente - costoCompra;
         return true;
     }
     return false;
 }
 
+/**
+ * Método para mostrar el nombre y el saldo del cliente.
+ *
+ * @param Ninguno
+ * @return void
+ */
 void Cliente::mostrar() {
-    cout << "Cliente: " << nombre << " | Saldo: $" << presupuesto << endl;
+    cout << "Cliente: " << nombreCliente << " | Saldo: $" << 
+        presupuestoCliente << endl;
 }
 
-#endif
+#endif // CLIENTE_H_
