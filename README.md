@@ -49,7 +49,7 @@ El programa incluye mensajes de error y rechaza la acción si:
  [Diagrama de clases](./diagramadeClases.png)
 ---
 
-## 6. Compilación y Ejecución
+## 4. Compilación y Ejecución
 
 Para compilar y ejecutar el programa desde la terminal, siga estos pasos:
 
