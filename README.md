@@ -49,3 +49,16 @@ El programa incluye mensajes de error y rechaza la acción si:
  [Diagrama de clases](./diagramadeClases.png)
 ---
 
+## 6. Compilación y Ejecución
+
+Para compilar y ejecutar el programa desde la terminal, siga estos pasos:
+
+1.  **Compilación:** Ejecute el siguiente comando para generar el ejecutable `gestor_vivero`:
+    ```bash
+    g++ main.cpp -o gestor_vivero
+    ```
+2.  **Ejecución:** Ejecute el siguiente comando:
+    ```bash
+    ./gestor_vivero
+    ```
+---
