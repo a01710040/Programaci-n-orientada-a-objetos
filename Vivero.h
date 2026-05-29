@@ -11,7 +11,6 @@ using namespace std;
 
 class Vivero {
 private:
-    // --- MODIFICACIÓN: Arreglos de APUNTADORES ---
     Planta* InventarioPlantas[MAX_INVENTARIO];
     Maceta* InventarioMacetas[MAX_INVENTARIO];
     Cliente* ListaClientes[MAX_INVENTARIO];
@@ -27,7 +26,6 @@ public:
     void crearPlanta(string nombre, double precio, int stock);
     void crearMaceta(string nombre, string material, string color, double precio, bool esColgante);
     
-    // Ahora recibe un apuntador a Cliente
     void registrarCliente(Cliente* c);
 
     void mostrarInventario();
@@ -51,7 +49,6 @@ Vivero::Vivero(int contP, int contM, int contC) {
 
 void Vivero::crearPlanta(string nombre, double precio, int stock) {
     if (contadorPlantas < MAX_INVENTARIO) {
-        // Uso de memoria Heap con 'new'
         InventarioPlantas[contadorPlantas] = new Planta(nombre, precio, stock);
         contadorPlantas++;
         cout << ">> Planta creada y agregada exitosamente." << endl;
@@ -62,7 +59,6 @@ void Vivero::crearPlanta(string nombre, double precio, int stock) {
 
 void Vivero::crearMaceta(string nombre, string material, string color, double precio, bool esColgante) {
     if (contadorMacetas < MAX_INVENTARIO) {
-        // Uso de memoria Heap con 'new'
         InventarioMacetas[contadorMacetas] = new Maceta(nombre, material, color, precio, esColgante);
         contadorMacetas++;
         cout << ">> Maceta creada y agregada exitosamente." << endl;
@@ -88,25 +84,22 @@ void Vivero::mostrarInventario() {
     for (int i = 0; i < contadorPlantas; i++) {
         cout << i << ". "; 
         
-        // DEMOSTRACIÓN DE POLIMORFISMO: 
-        // Usamos un apuntador de la clase BASE que apunta a un objeto DERIVADO.
         Producto* p = InventarioPlantas[i]; 
-        p->mostrar(); // Automáticamente llama a Planta::mostrar()
+        p->mostrar();
     }
 
     cout << "--- Macetas (" << contadorMacetas << ") ---" << endl;
     for (int i = 0; i < contadorMacetas; i++) {
         cout << i << ". ";
         
-        // DEMOSTRACIÓN DE POLIMORFISMO:
         Producto* p = InventarioMacetas[i];
-        p->mostrar(); // Automáticamente llama a Maceta::mostrar()
+        p->mostrar();
     }
 
     cout << "--- Clientes (" << contadorClientes << ") ---" << endl;
     for (int i = 0; i < contadorClientes; i++) {
         cout << i << ". ";
-        ListaClientes[i]->mostrar(); // Ahora usamos el operador flecha (->) porque son apuntadores
+        ListaClientes[i]->mostrar();
     }
     cout << "==========================" << endl;
 }
@@ -114,8 +107,7 @@ void Vivero::mostrarInventario() {
 void Vivero::realizarVenta(int indiceCliente, int indicePlanta) {
     if (indiceCliente >= 0 && indiceCliente < contadorClientes && 
         indicePlanta >= 0 && indicePlanta < contadorPlantas) {
-        
-        // Obtenemos los apuntadores
+
         Cliente* elCliente = ListaClientes[indiceCliente];
         Planta* laPlanta = InventarioPlantas[indicePlanta];
 
@@ -127,8 +119,6 @@ void Vivero::realizarVenta(int indiceCliente, int indicePlanta) {
                 laPlanta->actualizarStock(-1); 
                 cout << ">> Venta Exitosa!" << endl;
                 
-                // NOTA: Como usamos apuntadores, ya no necesitamos reescribir la 
-                // variable en el arreglo. ¡Los cambios se hacen directo en memoria!
             } else {
                 cout << ">> Saldo insuficiente." << endl;
             }
@@ -153,7 +143,6 @@ void Vivero::realizarVentaMaceta(int indiceCliente, int indiceMaceta) {
         if (elCliente->comprar(laMaceta->getPrecio())) {
             cout << ">> Venta Exitosa! Maceta eliminada del inventario." << endl;
             
-            // Recorremos los apuntadores para sobreescribir el espacio eliminado
             for (int i = indiceMaceta; i < contadorMacetas - 1; i++) {
                 InventarioMacetas[i] = InventarioMacetas[i + 1];
             }
