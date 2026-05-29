@@ -4,26 +4,22 @@
 using namespace std;
 
 int main() {
-    // Creamos el objeto principal
     Vivero miVivero;
     
-    // Variable para la opción del menú
     int opcion = -1;
 
-    // Variables temporales para la entrada del usuario
     string nombreTemp, materialTemp, colorTemp;
     double precioTemp, presupuestoTemp;
     int stockTemp;
     bool esColganteTemp;
-    int indiceCliente, indicePlanta, indiceMaceta; // Indices para ventas
+    int indiceCliente, indicePlanta, indiceMaceta;
 
-    // Precarga para tener datos de prueba
-    Cliente clienteInicial("Ana Martinez", 500.0);
+    Cliente* clienteInicial = new Cliente("Ana Martinez", 500.0);
     miVivero.registrarCliente(clienteInicial);
+    
     miVivero.crearPlanta("Rosa Roja", 150.0, 3);
     miVivero.crearMaceta("Barro", "Arcilla", "Cafe", 40.0, false);
     
-    // Bucle principal del menú
     while (opcion != 0) {
         cout << "\n=== MENU PRINCIPAL VIVERO ===" << endl;
         cout << "1. Crear nueva Planta" << endl;
@@ -35,7 +31,6 @@ int main() {
         cout << "0. Salir" << endl;
         cout << "Seleccione una opcion: ";
         
-        // Manejo de error de entrada
         if (!(cin >> opcion)) {
             cout << "Entrada invalida. Reiniciando menu." << endl;
             cin.clear();
@@ -44,14 +39,12 @@ int main() {
         }
 
         if (opcion == 1) {
-            // Crear Planta
             cout << "Nombre: "; cin >> nombreTemp;
             cout << "Precio: "; cin >> precioTemp;
             cout << "Stock: "; cin >> stockTemp;
             miVivero.crearPlanta(nombreTemp, precioTemp, stockTemp);
         }
         else if (opcion == 2) {
-            // Crear Maceta
             cout << "Nombre: "; cin >> nombreTemp;
             cout << "Material: "; cin >> materialTemp;
             cout << "Color: "; cin >> colorTemp;
@@ -61,25 +54,22 @@ int main() {
                                  precioTemp, esColganteTemp);
         }
         else if (opcion == 3) {
-            // Registrar Cliente
             cout << "Nombre: "; cin >> nombreTemp;
             cout << "Presupuesto: "; cin >> presupuestoTemp;
-            Cliente nuevoCliente(nombreTemp, presupuestoTemp);
+            // Almacenamos el cliente en Heap
+            Cliente* nuevoCliente = new Cliente(nombreTemp, presupuestoTemp);
             miVivero.registrarCliente(nuevoCliente);
         }
         else if (opcion == 4) {
-            // Reporte
             miVivero.mostrarInventario();
         }
         else if (opcion == 5) {
-            // Venta Planta
             miVivero.mostrarInventario();
             cout << "Indice del Cliente: "; cin >> indiceCliente;
             cout << "Indice de la Planta: "; cin >> indicePlanta;
             miVivero.realizarVenta(indiceCliente, indicePlanta);
         }
         else if (opcion == 6) {
-            // Venta Maceta
             miVivero.mostrarInventario();
             cout << "Indice del Cliente: "; cin >> indiceCliente;
             cout << "Indice de la Maceta: "; cin >> indiceMaceta;
