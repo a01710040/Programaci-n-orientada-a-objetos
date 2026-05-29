@@ -19,7 +19,6 @@ public:
     double getPrecio() const;
     void setPrecio(double nuevoPrecio);
     
-    // --- POLIMORFISMO: Se agrega virtual a la clase base ---
     virtual void mostrar();
 };
 
@@ -34,7 +33,6 @@ public:
     int getStock() const;
     void actualizarStock(int cantidad);
     
-    // Redefinición del método virtual (sin usar override)
     void mostrar();
 };
 
@@ -48,11 +46,9 @@ public:
     Maceta();
     Maceta(string nombreIn, string materialIn, string colorIn, double precioIn, bool colganteIn);
 
-    // Redefinición del método virtual (sin usar override)
     void mostrar();
 };
 
-// --- IMPLEMENTACIONES ---
 
 Producto::Producto() {
     nombreProducto = "Sin Nombre";
@@ -70,7 +66,6 @@ void Producto::setPrecio(double nuevoPrecio) {
     if (nuevoPrecio >= 0) precioProducto = nuevoPrecio;
 }
 
-// Método base virtual
 void Producto::mostrar() {
     cout << "Producto Base: " << nombreProducto << " | Precio: $" << precioProducto << endl;
 }
